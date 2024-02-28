@@ -9,7 +9,8 @@ z=0인 부분을 target point로 정하여, 구하는 과정을 담은 프로젝
 if ZED2 Camera가 없다면, 다른 3D HPE 모델을 사용해서 얻은 Pose로도 대체 가능합니다. (target_point.py에서 INDEX 코드 수정)
 이 프로젝트는 ZED 2 카메라를 사용하여 실시간으로 인체의 3D 포즈를 추적하는 것을 기반으로 하지만, ZED 2 카메라가 없는 경우에도 다른 3D 인체 포즈 추정(Human Pose Estimation, HPE) 모델을 활용하여 유사한 데이터를 얻을 수 있습니다. 
 사용자는 target_point.py 내의 INDEX 코드를 수정하여 다른 HPE 모델로부터 얻은 포즈 데이터를 프로젝트에 통합할 수 있습니다.
- 
+
+하지만, zed-ros2-interface 대신 3D HPE의 데이터를 담을 interface를 커스텀마이징 해야합니다.
 
 ## Installation
 # Prerequisites
