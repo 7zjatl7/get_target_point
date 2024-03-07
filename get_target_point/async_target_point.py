@@ -57,7 +57,10 @@ class SkeletonToTargetPoint(Node):
 
         self.cnt = 0
 
+
+
     def socket_human_action(self):
+        # action client 연결 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.bind((self.HOST, self.PORT))
             s.listen()
@@ -73,8 +76,6 @@ class SkeletonToTargetPoint(Node):
                             break
                         self.command = data.decode()
                         self.get_logger().info(f"Received command: {self.command}")
-                        if self.command == "STOP":
-                            self.executor.create_task(self.cancel_goal_async())
 
                         conn.sendall("Data received".encode())
 
@@ -138,6 +139,11 @@ class SkeletonToTargetPoint(Node):
             
                         self.command = 'stand'
 
+        elif self.command == 'stop':
+            write_goal_txt(self.goal_path, self.command)
+            
+            self.get_logger().info('The robot is stopping navigation...')
+
         elif self.command == 'stand':
             self.get_logger().info('Waiting for additional commands...')
     
@@ -151,6 +157,7 @@ def main(args=None):
     
     rclpy.init(args=args)
     skeleton_target_point = SkeletonToTargetPoint()
+
     
     try:
         rclpy.spin(skeleton_target_point)

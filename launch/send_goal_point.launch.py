@@ -29,7 +29,7 @@ def generate_launch_description():
         _declare_yaml_path_argument,  # LaunchDescription에 DeclareLaunchArgument를 추가해야 함
         Node(
             package='get_target_point',
-            executable='target_point',
+            executable='async_target_point',
             name='get_skeletons_node',
         ),
     ])

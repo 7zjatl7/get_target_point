@@ -24,7 +24,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'target_point = get_target_point.target_point:main'
+            'action_recognition = get_target_point.action_recogintion:main',
+            'target_point = get_target_point.target_point:main',
+            'async_target_point = get_target_point.async_target_point:main'
         ],
     },
 )
